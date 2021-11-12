@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    function gettingJSON(){
+        document.write("jquery loaded");
+        $.getJSON("https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=eaa43d94f204987cc6ae167cb7e5c738",function(json){
+            document.write(JSON.stringify(json));
+        });
+    }
+    </script>
+</head>
+<body>
+<button id = "getIt" onclick = "gettingJSON()">Get JSON</button>
+</body>
+</html>
