@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styling.css">
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <p>
+            <img style="text-align:left;" src="db_logo2.png" alt="description" height="100" width="400"/>
+            <a class="link" title="sign_in" href="https://">Sign In</a>
+            <br>
+        </p>    
+        <div class="tab">
+            <button class="tablinks" onclick="switchTab(event, 'feed')">Feed</button>
+            <button class="tablinks" onclick="switchTab(event, 'subscribe')">Subscribe</button>
+            <script src="main-tabs.js"></script>
+        </div>
+
+        <!--Feed section/!-->
+        <div id="feed" class="tabcontent">
+        <div class="byte">
+            <h1>Covid 19</h1><h2>Canada</h2><br>
+            <p>
+                stuff<br>
+                stuff<br>
+                stuff<br>
+            </p>
+        </div>
+        <div class="byte">
+            <h1>News</h1><h2>Canada</h2><br>
+            <p>
+                stuff<br>
+                stuff<br>
+                stuff<br>
+            </p>
+        </div>
+        <div class="byte">
+            <h1 class="topic">Weather</h1><h2 class="subtopic">London</h2><br>
+            <p class="topic-info">
+                stuff<br>
+                stuff<br>
+                stuff<br>
+            </p>
+        </div>
+        <div class="byte">
+            <h1>Stocks</h1><h2>TSLA</h2><br>
+            <p>
+                stuff<br>
+                stuff<br>
+                stuff<br>
+            </p>
+        </div>
+        </div>
+
+        <!--Subscribe section/!-->
+        <div id="subscribe" class="tabcontent">
+
+            <h1>Covid 19</h1>
+            <!--Gonna query database for options later, this is just an example for now/!---------------------------------------->
+            <ul>
+                <li>
+                    Canada
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="subbed">Subscribed</button>
+                </li>
+                <li>
+                    USA
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+                <li>
+                    Mexico
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+            </ul>
+            <!--end example!----------------------------------------------------------------------------------------------------->
+
+            <h1>News</h1>
+            <!--Gonna query database for options later, this is just an example for now/!---------------------------------------->
+            <ul>
+                <li>
+                    Sports
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="subbed">Subscribed</button>
+                </li>
+                <li>
+                    Politics
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+                <li>
+                    Culture
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+            </ul>
+            <!--end example!----------------------------------------------------------------------------------------------------->
+
+            <h1>Stocks</h1>
+            <!--Gonna query database for options later, this is just an example for now/!---------------------------------------->
+            <ul>
+                <li>
+                    HIVE
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="subbed">Subscribed</button>
+                </li>
+                <li>
+                    TSLA
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+                <li>
+                    AAPL
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+            </ul>
+            <!--end example!----------------------------------------------------------------------------------------------------->
+
+            <h1>Weather</h1>
+            <!--Gonna query database for options later, this is just an example for now/!---------------------------------------->
+            <ul>
+                <li>
+                    London
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="subbed">Subscribed</button>
+                </li>
+                <li>
+                    Windsor
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+                <li>
+                    Toronto	
+                    <button type="button" onclick="alert('This feature doesnt work yet')" class="sub">Subscribe</button>
+                </li>
+            </ul>
+            <!--end example!----------------------------------------------------------------------------------------------------->
+        </div>
+    </body>
+</html>
