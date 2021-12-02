@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 from uuid import uuid4
 import os
 import json
@@ -76,19 +76,66 @@ def login():
     else:
         return jsonify(response)
 
+@app.route("/subscribe", methods=["POST"])
+def subscribe():
+    user_id = token_to_id(request.json["token"])
+    service_id = request.json["service"]
+
+    query = ("INSERT INTO user (user_id, service_id) VALUES (%s, %s)")
+    value = (user_id, service_id, )
+    cursor.execute(query, value)
+    database.commit()
+    if cursor.rowcount == 1:
+        pass
+        # send back data from that service
+
+
 @socketio.on('connect')
 def connect(message):
     clients.append(request.sid)
 
-@socketio.on('message')
-def message(message):
-    data = json.loads(message)
-    if data["type"] == "connect" and request.sid in clients:
+@socketio.on('initial')
+def initial(data):
+    if request.sid in clients:
         id = token_to_id(data["token"])
         users[id] = request.sid
+        subscriptions = get_all_subscription(id)
+        services = get_all_services()
+        response = {
+            "subscriptions": subscriptions,
+            "services": services
+        }
+        emit("services", response, room=request.sid)
     
-    print(users)
-    
+def get_all_services():
+    query = ("SELECT service_id FROM service")
+    cursor.execute(query)
+    result = [item[0] for item in cursor.fetchall()]
+
+    return result
+
+def get_all_subscription(user_id):
+    query = ("SELECT service_id FROM subscription WHERE user_id = %s")
+    value = (user_id, )
+    cursor.execute(query, value)
+
+    result = [item[0] for item in cursor.fetchall()]
+    return result
+
+def get_all_subscribers(service_id):
+    query = ("SELECT user_id FROM subscription WHERE service_id = %s")
+    value = (service_id, )
+    cursor.execute(query, value)
+
+    result = [item[0] for item in cursor.fetchall()]
+    return result
+
+def publish_to_subscribers(service_id, data):
+    user_ids = get_all_subscribers(service_id)
+    for i in range(0, len(user_ids)):
+        if user_ids[i] in users:
+            emit(service_id, data, room=user_ids[i])
+
 # authentication middleware:
 def token_to_id(token):
     query = ("SELECT id FROM user WHERE token = %s")

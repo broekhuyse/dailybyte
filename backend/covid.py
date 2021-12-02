@@ -3,6 +3,12 @@ import mysql.connector
 import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
+# cursor.execute("DROP TABLE IF EXISTS covid")
+# database.commit()
+# covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
+# cursor.execute(covidtable)
+# database.commit()
+
 def toDatabase(cases):
     current = cases['active_cases']
     t_case = cases['cases']

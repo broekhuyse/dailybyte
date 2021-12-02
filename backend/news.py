@@ -2,6 +2,12 @@ from newsapi import NewsApiClient
 import mysql.connector
 from apscheduler.schedulers.background import BackgroundScheduler
 
+# cursor.execute("DROP TABLE IF EXISTS news")
+# database.commit()
+# newstable = ("CREATE TABLE news(newsid INT AUTO_INCREMENT PRIMARY KEY, category VARCHAR(20) NOT NULL, title VARCHAR(550) NOT NULL UNIQUE, url VARCHAR(500) NOT NULL, description VARCHAR(500) NOT NULL, country VARCHAR(50) NOT NULL)")
+# cursor.execute(newstable)
+# database.commit()
+
 def addNews(headlines,category,country,cs,db,query):
     for news in headlines:
         title = news['title']

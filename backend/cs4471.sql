@@ -9,6 +9,17 @@ CREATE TABLE user (
 	token VARCHAR(255) UNIQUE
 );
 
+CREATE TABLE service (
+	service_id VARCHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE subscription (
+	user_id INT NOT NULL,
+	service_id VARCHAR(20) NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES user(id),
+	FOREIGN KEY (service_id) REFERENCES service(service_id)
+);
+
 CREATE TABLE news (
 	newsid INT AUTO_INCREMENT PRIMARY KEY, 
 	category VARCHAR(20) NOT NULL,
@@ -28,3 +39,8 @@ CREATE TABLE covid(
 	date DATE NOT NULL,
 	province VARCHAR(40) NOT NULL
 );
+
+INSERT INTO service (service_id) VALUES ("news");
+INSERT INTO service (service_id) VALUES ("covid");
+INSERT INTO service (service_id) VALUES ("weather");
+INSERT INTO service (service_id) VALUES ("stock");
