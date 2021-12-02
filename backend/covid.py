@@ -17,6 +17,8 @@ def toJson():
     for x in myresult:
         s = {'active_cases':x[0],'cases':x[1],'total':x[2],'cumulative_cvaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':x[6],'province':x[7]}
         json[x[7]]=s
+    mycursor.close()
+    mydb.close()
     return json
 def toDatabase(cases):
     current = cases['active_cases']

@@ -7,7 +7,23 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # newstable = ("CREATE TABLE news(newsid INT AUTO_INCREMENT PRIMARY KEY, category VARCHAR(20) NOT NULL, title VARCHAR(550) NOT NULL UNIQUE, url VARCHAR(500) NOT NULL, description VARCHAR(500) NOT NULL, country VARCHAR(50) NOT NULL)")
 # cursor.execute(newstable)
 # database.commit()
-
+def toJson():
+    json = []
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="",
+        password="",
+        database="cs4471"
+)
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM news")
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        s = {'category':x[0],'title':x[1],'url':x[2],'description':x[3],'country':x[4]}
+        json.append(s)
+    mycursor.close()
+    mydb.close()
+    return json
 def addNews(headlines,category,country,cs,db,query):
     for news in headlines:
         title = news['title']

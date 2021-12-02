@@ -1,4 +1,18 @@
+/*
+function display(data){
+	data = '{"services":["covid","news"]}'
+	var socketInput = JSON.parse(data)
+	var services = socketInput.services;
+	var str = '<ul>';
+	services.forEach(function(service) {
+		str += '<li><button type="button" class="sub-button">'+ service + '</button></li>';
+	}); 
+	str += '</ul>';
+	document.getElementById("subscribe").innerHTML = str;
+}
+*/
 var display_services=function (data){
+	data = '{"services":["covid","news","stocks"]}'
 	var socketInput = JSON.parse(data)
 	var services = socketInput.services;
 	var str = '<ul>';
