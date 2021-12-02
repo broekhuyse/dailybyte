@@ -19,7 +19,7 @@ def toJson():
     mycursor.execute("SELECT * FROM news")
     myresult = mycursor.fetchall()
     for x in myresult:
-        s = {'category'=x[0],'title'=x[1],'url'=x[2],'description'=x[3],'country'=x[4]}
+        s = {'category':x[0],'title':x[1],'url':x[2],'description':x[3],'country':x[4]}
         json.append(s)
     return json
 def addNews(headlines,category,country,cs,db,query):
