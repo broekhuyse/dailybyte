@@ -1,21 +1,16 @@
 import requests
 import mysql.connector
 import datetime
-from apscheduler.schedulers.background import BackgroundScheduler
+import os
 
-# cursor.execute("DROP TABLE IF EXISTS covid")
-# database.commit()
-# covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
-# cursor.execute(covidtable)
-# database.commit()
 def toJson():
     json = {}
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="",
-        password="",
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
         database="cs4471"
-)
+    )
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * FROM covid")
     myresult = mycursor.fetchall()
@@ -39,9 +34,9 @@ def main():
     response = requests.get("https://api.opencovid.ca/")
     response2 = requests.get("https://api.opencovid.ca/summary")
     database = mysql.connector.connect(
-      host="localhost",
-      user="",
-      password="",
+      host=os.environ['DB_HOST'],
+      user=os.environ['DB_USER'],
+      password=os.environ['DB_PASSWORD'],
       database="cs4471"
 )
     cursor = database.cursor()
@@ -55,6 +50,12 @@ def main():
     database.commit()
     byProvince = response2.json()
     province = byProvince['summary']
+
+    cursor.execute("DROP TABLE IF EXISTS covid")
+    database.commit()
+    covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
+    cursor.execute(covidtable)
+    database.commit()
    
     for p in province:
         if p['province'] != "Repatriated":
@@ -65,6 +66,4 @@ def main():
     database.close()
 
 
-scheduler = BackgroundScheduler()
-job = scheduler.add_job(main,'cron', day_of_week ='mon-sun', hour=8, minute=00)
-scheduler.start()
+
