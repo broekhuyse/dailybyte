@@ -38,6 +38,7 @@
   font-size: 32px;
   font-weight: bold;
   margin: 1px 1px;
+  margin-bottom: 20px;
   cursor: pointer;
   background-color: #1bf51b;
   
@@ -47,6 +48,23 @@
 }
 .tab button.active {
   background-color: #158000;
+}
+.sub-button{
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  background-color:#3280ed;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+.sub-button:hover{
+  background-color: #27d417;
+}
+.sub-button.active {
+  background-color: #61ff19;
 }
 .subbed{
   -webkit-border-radius: 20px 20px 20px 20px;
@@ -72,7 +90,7 @@ li{
 .byte{
   padding-top: 5px;
   padding-bottom: 10px;
-  background-color:#c7ffc7;
+  
   border: none;
   text-align: left;
   margin: 2px;  
@@ -105,14 +123,15 @@ li{
 }
 .byte p{
   margin-left: 8px;
+  font-size: 20px;
 }
 .main-page{
-  background-color: #ffc96b;
+  background-color: #c1c4c9;
 }
 .login-page{
   text-align: center;
   
-  background-color: #ffc96b;
+  background-color: #c1c4c9;
   
 }
 .login-page h2{
