@@ -8,7 +8,18 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
 # cursor.execute(covidtable)
 # database.commit()
-
+def toJson(cases):
+    current = cases['active_cases']
+    t_case = cases['cases']
+    total = cases['cumulative_cases']
+    vaccine = cases['cumulative_cvaccine']
+    total_death = cases['cumulative_deaths']
+    death = cases['deaths']
+    d = cases['date']
+    date = datetime.datetime.strptime(d, "%d-%m-%Y").strftime("%Y-%m-%d")
+    province = cases['province']
+    s = {'active_cases':current,'cases':t_case,'total':total,'cumulative_cvaccine':vaccine,'cumulative_deaths':total_death,'deaths':death,'date':date,'province':province}
+    return s
 def toDatabase(cases):
     current = cases['active_cases']
     t_case = cases['cases']
