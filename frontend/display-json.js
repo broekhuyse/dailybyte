@@ -1,9 +1,8 @@
 var display_services=function (data){
 	var socketInput = JSON.parse(data)
 	var services = socketInput.services;
-	var service_list = services.split(",");
 	var str = '<ul>';
-	service_list.forEach(function(service) {
+	services.forEach(function(service) {
 		str += '<li><button type="button" class="sub-button">'+ service + '</button></li>';
 	}); 
 	str += '</ul>';
