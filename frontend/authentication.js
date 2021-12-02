@@ -5,7 +5,7 @@ function getFormData() {
 }
 let url = "http://127.0.0.1:5000";
 
-function authentication(path) {
+window.authentication = function (path) {
     let input = getFormData();
     fetch(url+path, {
         method: 'POST',
@@ -15,9 +15,11 @@ function authentication(path) {
         },
         body: JSON.stringify(input),
     }).then(response => {
-        console.log(response);
         return response.json();
     }).then(data => {
         localStorage.setItem("token", data.token);
+        setTimeout(function(){ 
+            window.location.replace("/frontend/main.html");
+        }, 3000);
     })
 }
