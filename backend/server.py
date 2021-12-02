@@ -1,24 +1,27 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+from flask_socketio import SocketIO
 from uuid import uuid4
+import os
+import json
 import mysql.connector
 import bcrypt
 
+clients = []
+users = {}
+
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins='*')
 
 database = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
+  host=os.environ['DB_HOST'],
+  user=os.environ['DB_USER'],
+  password=os.environ['DB_PASSWORD'],
   database="cs4471"
 )
 
 cursor = database.cursor()
-
-@app.route("/", methods=["GET"])
-def index():
-    return "Hello World"
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -73,11 +76,33 @@ def login():
     else:
         return jsonify(response)
 
+@socketio.on('connect')
+def connect(message):
+    clients.append(request.sid)
+
+@socketio.on('message')
+def message(message):
+    data = json.loads(message)
+    if data["type"] == "connect" and request.sid in clients:
+        id = token_to_id(data["token"])
+        users[id] = request.sid
+    
+    print(users)
+    
 # authentication middleware:
-def authentication():
-    pass
+def token_to_id(token):
+    query = ("SELECT id FROM user WHERE token = %s")
+    value = (token, )
+    cursor.execute(query, value)
+
+    result = cursor.fetchall()
+    
+    if len(result) == 1:
+        return result[0][0]
+    else:
+        return None
 
 if __name__ == '__main__':
-    app.run()
+    socketio.run(app)
     cursor.close()
     database.close()

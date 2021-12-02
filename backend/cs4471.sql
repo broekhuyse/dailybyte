@@ -9,5 +9,22 @@ CREATE TABLE user (
 	token VARCHAR(255) UNIQUE
 );
 
-CREATE TABLE news ( newsid INT AUTO_INCREMENT PRIMARY KEY, category VARCHAR(20) NOT NULL,title VARCHAR(550) NOT NULL UNIQUE, url VARCHAR(500) NOT NULL, description VARCHAR(500) NOT NULL, country VARCHAR(50) NOT NULL );
-CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,cases INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL);
+CREATE TABLE news (
+	newsid INT AUTO_INCREMENT PRIMARY KEY, 
+	category VARCHAR(20) NOT NULL,
+	title VARCHAR(550) NOT NULL UNIQUE, 
+	url VARCHAR(500) NOT NULL, 
+	description VARCHAR(500) NOT NULL, 
+	country VARCHAR(50) NOT NULL
+);
+CREATE TABLE covid(
+	cid INT AUTO_INCREMENT PRIMARY KEY,
+	active_case INT,
+	cases INT,
+	cumulative_cases INT NOT NULL,
+	cumulative_vaccine INT NOT NULL,
+	cumulative_death INT NOT NULL,
+	death INT, 
+	date DATE NOT NULL,
+	province VARCHAR(40) NOT NULL
+);
