@@ -2,9 +2,9 @@
   border: none;
   color: blue;
   padding: 15px 32px;
-  padding-bottom: 50px;
-  padding-left: 600px;
-  text-align: center;
+
+  top: 0px;
+  right: 0px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -105,5 +105,51 @@ li{
 }
 .byte p{
   margin-left: 8px;
+}
+.main-page{
+  background-color: #ffc96b;
+}
+.login-page{
+  text-align: center;
+  
+  background-color: #ffc96b;
+  
+}
+.login-page h2{
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px;
+  border: solid;
+  color: black;
+  padding: 30px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 1px 1px;
+  font-family: arial;
+  background-color: #1bf51b;
+  margin-bottom: 20px;
+}
+.login-page input{
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px; 
+  padding: 5px 10px;
+  display: inline-block;
+  font-family: arial;
+}
+.login-page button{
+  -webkit-border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px; 
+  padding: 10px 30px;
+  font-family: arial;
+  background-color: #1bf51b;
+}
+.login-page button:hover{
+  background-color: #27d417;
+  cursor: pointer;
 }
 
