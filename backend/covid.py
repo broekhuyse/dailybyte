@@ -8,18 +8,21 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
 # cursor.execute(covidtable)
 # database.commit()
-def toJson(cases):
-    current = cases['active_cases']
-    t_case = cases['cases']
-    total = cases['cumulative_cases']
-    vaccine = cases['cumulative_cvaccine']
-    total_death = cases['cumulative_deaths']
-    death = cases['deaths']
-    d = cases['date']
-    date = datetime.datetime.strptime(d, "%d-%m-%Y").strftime("%Y-%m-%d")
-    province = cases['province']
-    s = {'active_cases':current,'cases':t_case,'total':total,'cumulative_cvaccine':vaccine,'cumulative_deaths':total_death,'deaths':death,'date':date,'province':province}
-    return s
+def toJson():
+    json = []
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="",
+        password="",
+        database="cs4471"
+)
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM covid")
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        s = {'active_cases':x[0],'cases':x[1],'total':x[2],'cumulative_cvaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':x[6],'province':x[7]}
+        json.append(s)
+    return json
 def toDatabase(cases):
     current = cases['active_cases']
     t_case = cases['cases']
