@@ -9,7 +9,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # cursor.execute(covidtable)
 # database.commit()
 def toJson():
-    json = []
+    json = {}
     mydb = mysql.connector.connect(
         host="localhost",
         user="",
@@ -21,7 +21,7 @@ def toJson():
     myresult = mycursor.fetchall()
     for x in myresult:
         s = {'active_cases':x[0],'cases':x[1],'total':x[2],'cumulative_cvaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':x[6],'province':x[7]}
-        json.append(s)
+        json[x[7]]=s
     return json
 def toDatabase(cases):
     current = cases['active_cases']
