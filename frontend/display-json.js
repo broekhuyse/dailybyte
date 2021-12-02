@@ -1,25 +1,19 @@
-function display(evt){
-	
-	/*
-	const socketInput = {"subbed": ["news"], services: ["news", "covid", "stock", 'weather"]}
-	const info = json.parse(socketInput);
-	var subbed = info.subbed;
-	var services = info.services;
+var display_services=function (data){
+	var socketInput = JSON.parse(data)
+	var services = socketInput.services;
 	var service_list = services.split(",");
-	*/
-	
-	const service_list = ["News","Weather","Covid","Stonks"];
 	var str = '<ul>';
 	service_list.forEach(function(service) {
 		str += '<li><button type="button" class="sub-button">'+ service + '</button></li>';
 	}); 
 	str += '</ul>';
 	document.getElementById("subscribe").innerHTML = str;
-	
+}
 
-	
-	
-	const subbed_list = ["News","Stonks"];
+var display_sub = function(data){
+	var socketInput = JSON.parse(data)
+	var subbed = socketInput.subscriptions;
+	var subbed_list = subbed.split(",");
 	var subscription_topic = "Canada";
 	var sub_info = "blah blah blah";
 	var sub_str = '';
