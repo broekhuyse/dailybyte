@@ -36,7 +36,7 @@ CREATE TABLE covid(
 	cumulative_vaccine INT NOT NULL,
 	cumulative_death INT NOT NULL,
 	death INT, 
-	date VARCHAR(20) NOT NULL,
+	date date NOT NULL,
 	province VARCHAR(40) NOT NULL
 );
 
