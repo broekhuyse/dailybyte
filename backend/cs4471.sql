@@ -46,6 +46,19 @@ CREATE TABLE covid(
 	date date NOT NULL,
 	province VARCHAR(40) NOT NULL
 );
+CREATE TABLE weather (
+	wid INT NOT NULL AUTO_INCREMENT, 
+	name VARCHAR(45) NULL, 
+	country VARCHAR(45) NULL, 
+	weather_desc VARCHAR(45) NULL,
+	temp FLOAT NULL, 
+	temp_min FLOAT NULL, 
+	temp_max FLOAT NULL, 
+	humidity INT NULL, 
+	sunset DATETIME NULL, 
+	sunset_str VARCHAR(45) NULL, 
+	PRIMARY KEY (wid)
+);
 
 INSERT INTO service (service_id) VALUES ("news");
 INSERT INTO service (service_id) VALUES ("covid");
