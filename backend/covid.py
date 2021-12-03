@@ -4,7 +4,7 @@ import datetime
 import os
 
 def toJson():
-    json = []}
+    json = []
     mydb = mysql.connector.connect(
         host=os.environ['DB_HOST'],
         user=os.environ['DB_USER'],
