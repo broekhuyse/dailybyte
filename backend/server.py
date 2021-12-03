@@ -7,6 +7,9 @@ import json
 import mysql.connector
 import bcrypt
 
+import news
+import covid
+
 clients = []
 users = {}
 
@@ -86,8 +89,10 @@ def subscribe():
     cursor.execute(query, value)
     database.commit()
     if cursor.rowcount == 1:
-        pass
-        # send back data from that service
+        if service_id == "covid":
+            publish_to_subscriber(service_id, user_id, covid.toJson())
+        elif service_id == "news":
+            publish_to_subscriber(service_id, user_id, news.toJson())
 
 
 @socketio.on('connect')
@@ -135,6 +140,10 @@ def publish_to_subscribers(service_id, data):
     for i in range(0, len(user_ids)):
         if user_ids[i] in users:
             emit(service_id, data, room=user_ids[i])
+
+def publish_to_subscriber(service_id, user_id, data):
+     if user_ids[i] in users:
+        emit(service_id, data, room=user_ids[i])
 
 # authentication middleware:
 def token_to_id(token):
