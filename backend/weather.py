@@ -37,9 +37,9 @@ def main():
     response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=eaa43d94f204987cc6ae167cb7e5c738&units=metric")
     try:
         database = mysql.connector.connect(
-        host="localhost",
-        user="",
-        password="",
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
         database="cs4471")
         cursor = database.cursor()
     except mysql.connector.Error as err:
