@@ -55,7 +55,7 @@ def main():
 
     cursor.execute("DROP TABLE IF EXISTS covid")
     database.commit()
-    covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,active_cases_change INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
+    covidtable = ("CREATE TABLE covid(cid INT AUTO_INCREMENT PRIMARY KEY,active_case INT,cases INT,cumulative_cases INT NOT NULL,cumulative_vaccine INT NOT NULL,cumulative_death INT NOT NULL,death INT, date DATE NOT NULL,province VARCHAR(40) NOT NULL)")
     cursor.execute(covidtable)
     database.commit()
    
