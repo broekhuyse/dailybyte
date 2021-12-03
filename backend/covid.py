@@ -4,7 +4,7 @@ import datetime
 import os
 
 def toJson():
-    json = {}
+    json = []}
     mydb = mysql.connector.connect(
         host=os.environ['DB_HOST'],
         user=os.environ['DB_USER'],
@@ -16,7 +16,7 @@ def toJson():
     myresult = mycursor.fetchall()
     for x in myresult:
         s = {'active_cases':x[0],'cases':x[1],'total':x[2],'cumulative_cvaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':x[6],'province':x[7]}
-        json[x[7]]=s
+        json.append(s)
     mycursor.close()
     mydb.close()
     return json

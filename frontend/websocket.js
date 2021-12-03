@@ -9,19 +9,24 @@ var connect = function(token) {
     socket.on("services", (data) => {
         console.log(data);
         serviceData = data;
-        display_services();
+        displayServices();
     });
 
     socket.on("news", (data) => {
         console.log(data);
+        newsData = data;
+        displayNews();
     });
 
     socket.on("weather", (data) => {
         console.log(data);
+        weatherData = data;
     });
 
-    socket.on("covid19", (data) => {
+    socket.on("covid", (data) => {
         console.log(data);
+        covidData = data;
+        displayCovid();
     });
 
     socket.on("stocks", (data) => {
