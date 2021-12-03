@@ -134,4 +134,9 @@ INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,
 INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,cumulative_death,death,date,province) VALUES (736, 82, 81074, 836064.0, 926.0, 1.0, '2021-12-01', 'Saskatchewan');
 INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,cumulative_death,death,date,province) VALUES (58, 5, 1519, 33758.0, 13.0, 0.0, '2021-12-01', 'Yukon');
 
-INSERT INTO stock (name, symbol, ask, bid) VALUES ("Apple" , "APPL", 100, 100);
+
+INSERT INTO stock (name, symbol, ask, bid) VALUES ('Apple', 'AAPL', 162.32, 162.55);
+INSERT INTO stock (name, symbol, ask, bid) VALUES ('Microsoft', 'MSFT', 328.93, 328.35);
+INSERT INTO stock (name, symbol, ask, bid) VALUES ('Amazon.com', 'AMZN', 3436.0, 3431.0);
+INSERT INTO stock (name, symbol, ask, bid) VALUES ('Meta Platforms', 'FB', 309.9, 309.7);
+INSERT INTO stock (name, symbol, ask, bid) VALUES ('Tesla', 'TSLA', 1083.4, 1073.5);
