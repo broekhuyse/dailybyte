@@ -29,6 +29,7 @@ var displayServices = function (serviceData){
 					},
 					body: JSON.stringify(input),
 				})
+				element.innerHTML = '<button type="button" class="sub-button">'+ service + '(subbed)</button>';
 			};
 		}
 		
