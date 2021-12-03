@@ -27,5 +27,6 @@ var connect = function(token) {
 
     socket.on("stocks", (data) => {
         console.log(data);
+        displayStocks(data)
     });
 }

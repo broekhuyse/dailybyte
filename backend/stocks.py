@@ -10,13 +10,14 @@ def toJson():
         database="cs4471"
 )
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM stock")
+    mycursor.execute("SELECT name, symbol, ask, bid FROM stock")
     myresult = mycursor.fetchall()
     for x in myresult:
         s = {'name':x[0],'symbol':x[1],'ask':x[2],'bid':x[3]}
         json.append(s)
     mycursor.close()
     mydb.close()
+
     return json
 
 def toDatabase(result,cs,db,query):
@@ -61,8 +62,7 @@ def main():
     stock.append(amazon)
     stock.append(fb)
     stock.append(tsl)
-    toDatabase(stock,cursor,database,query)
+    for a in stock:
+        toDatabase(a,cursor,database,query)
     cursor.close()
     database.close()
-
-

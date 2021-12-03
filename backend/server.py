@@ -9,6 +9,8 @@ import bcrypt
 
 import news
 import covid
+import weather
+import stocks
 
 clients = []
 users = {}
@@ -93,8 +95,9 @@ def subscribe():
         if service_id == "covid":
             publish_to_subscriber_with_one_subscription(service_id, user_id, covid.toJson())
         elif service_id == "news":
-            print(news.toJson())
             publish_to_subscriber_with_one_subscription(service_id, user_id, news.toJson())
+        elif service_id == "stocks":
+            publish_to_subscriber_with_one_subscription(service_id, user_id, stocks.toJson())
         return ""
     else:
         return ""
@@ -159,6 +162,8 @@ def publish_to_subscriber_with_all_subscription(user_id):
                 publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, covid.toJson())
         elif subscriptions[i] == "news":
             publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, news.toJson())
+        elif subscriptions[i] == "stocks":
+            publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, stocks.toJson())
 
 # authentication middleware:
 def token_to_id(token):
