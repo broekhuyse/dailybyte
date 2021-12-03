@@ -8,6 +8,8 @@ var connect = function(token) {
 
     socket.on("services", (data) => {
         console.log(data);
+        serviceData = data;
+        display_services();
     });
 
     socket.on("news", (data) => {
