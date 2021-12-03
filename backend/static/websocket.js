@@ -23,6 +23,7 @@ var connect = function(token) {
 
     socket.on("weather", (data) => {
         console.log(data);
+        displayWeather(data)
     });
 
     socket.on("stocks", (data) => {

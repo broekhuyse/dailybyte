@@ -12,10 +12,10 @@ def toJson():
         database="cs4471"
 )
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM weather")
+    mycursor.execute("SELECT name, country, weather_desc, temp, temp_min, temp_max, humidity, sunset, sunset_str FROM weather")
     myresult = mycursor.fetchall()
     for x in myresult:
-        s = {'name':x[0], 'country':x[1], 'desc':x[2], 'temp':x[3], 'temp_min':x[4], 'temp_max':x[5], 'humidity':x[6], 'sunset':x[7], 'sunset_str':x[8]}
+        s = {'name':x[0], 'country':x[1], 'desc':x[2], 'temp':x[3], 'temp_min':x[4], 'temp_max':x[5], 'humidity':x[6], 'sunset':str(x[7]), 'sunset_str':x[8]}
         json.append(s)
     mycursor.close()
     mydb.close()

@@ -1,18 +1,5 @@
-/*
-function display(data){
-	data = '{"services":["covid","news"]}'
-	var socketInput = JSON.parse(data)
-	var services = socketInput.services;
-	var str = '<ul>';
-	services.forEach(function(service) {
-		str += '<li><button type="button" class="sub-button">'+ service + '</button></li>';
-	}); 
-	str += '</ul>';
-	document.getElementById("subscribe").innerHTML = str;
-}
-*/
-
 var displayServices = function (serviceData){
+	let token = localStorage.getItem("token")
 	document.getElementById("subscribe").innerHTML = null;
 	let str = '<ul>';
 	serviceData.services.forEach(function(service) {
@@ -30,9 +17,10 @@ var displayServices = function (serviceData){
 		if (element != null) {
 			element.onclick = function() {
 				let input = {
-					token: localStorage.getItem("token"),
+					token: token,
 					service: service
 				}
+				console.log(input);
 				fetch(url+"/subscribe", {
 					method: 'POST',
 					mode: 'cors',
@@ -41,9 +29,7 @@ var displayServices = function (serviceData){
 					},
 					body: JSON.stringify(input),
 				})
-				element.innerHTML = '<li><button type="button" class="sub-button">'+ service + '(subbed)</button></li>';
 			};
-
 		}
 		
 	}); 
@@ -93,4 +79,20 @@ var displayStocks = function(stocksData){
 		str += '</ul>';
 	}
 	document.getElementById("stocks").innerHTML = str;
+}
+
+
+var displayWeather = function(weatherData){
+	document.getElementById("weather").innerHTML = null;
+	let str = '<h1>Weather</h1>';
+	
+	for (let i = 0; i < weatherData.length; i++) { 
+		str += '<ul>';
+		str += '<h2>' + weatherData[i]["name"] + '</h2>';
+		for (const key in weatherData[i]) {
+			str += '<li>'+key + ': ' + weatherData[i][key] + '</li>';
+		}
+		str += '</ul>';
+	}
+	document.getElementById("weather").innerHTML = str;
 }

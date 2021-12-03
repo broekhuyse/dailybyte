@@ -28,6 +28,10 @@ database = mysql.connector.connect(
 
 cursor = database.cursor()
 
+@app.route("/hello", methods=["GET"])
+def hello():
+    return "hello"
+
 @app.route("/signup", methods=["POST"])
 def signup():
     salt = bcrypt.gensalt()
@@ -85,8 +89,6 @@ def login():
 def subscribe():
     user_id = token_to_id(request.json["token"])
     service_id = request.json["service"]
-    print(user_id)
-    print(service_id)
     query = ("INSERT INTO subscription (user_id, service_id) VALUES (%s, %s)")
     value = (user_id, service_id, )
     cursor.execute(query, value)
@@ -98,6 +100,21 @@ def subscribe():
             publish_to_subscriber_with_one_subscription(service_id, user_id, news.toJson())
         elif service_id == "stocks":
             publish_to_subscriber_with_one_subscription(service_id, user_id, stocks.toJson())
+        elif service_id == "weather":
+            publish_to_subscriber_with_one_subscription(service_id, user_id, weather.toJson())
+        return ""
+    else:
+        return ""
+
+@app.route("/unsubscribe", methods=["POST"])
+def unsubscribe():
+    user_id = token_to_id(request.json["token"])
+    service_id = request.json["service"]
+    query = "DELETE FROM subscription WHERE user_id = %s AND service_id = %s"
+    value = (user_id, service_id, )
+    cursor.execute(query, value)
+    database.commit()
+    if cursor.rowcount == 1:
         return ""
     else:
         return ""
@@ -164,6 +181,8 @@ def publish_to_subscriber_with_all_subscription(user_id):
             publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, news.toJson())
         elif subscriptions[i] == "stocks":
             publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, stocks.toJson())
+        elif subscriptions[i] == "weather":
+            publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, weather.toJson())
 
 # authentication middleware:
 def token_to_id(token):
