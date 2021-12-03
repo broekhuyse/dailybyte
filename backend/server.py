@@ -13,9 +13,9 @@ import covid
 clients = []
 users = {}
 
-app = Flask(__name__)
-CORS(app)
+app = Flask(__name__, static_url_path='', static_folder='static', template_folder='templates')
 socketio = SocketIO(app, cors_allowed_origins='*')
+CORS(app)
 
 database = mysql.connector.connect(
   host=os.environ['DB_HOST'],
@@ -174,6 +174,6 @@ def token_to_id(token):
         return None
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, host="localhost")
     cursor.close()
     database.close()

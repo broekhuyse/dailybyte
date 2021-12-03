@@ -19,7 +19,7 @@ window.authentication = function (path) {
     }).then(data => {
         localStorage.setItem("token", data.token);
         setTimeout(function(){ 
-            window.location.replace("/frontend/main.html");
+            window.location.replace("/main.html");
         }, 1000);
     })
 }

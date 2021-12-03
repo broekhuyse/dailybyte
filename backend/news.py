@@ -17,7 +17,7 @@ def toJson():
         database="cs4471"
 )
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM news")
+    mycursor.execute("SELECT category, title, url, description, country FROM news")
     myresult = mycursor.fetchall()
     for x in myresult:
         s = {'category':x[0],'title':x[1],'url':x[2],'description':x[3],'country':x[4]}

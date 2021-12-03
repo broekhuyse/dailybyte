@@ -12,10 +12,10 @@ def toJson():
         database="cs4471"
     )
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM covid")
+    mycursor.execute("SELECT active_case, cases, cumulative_cases, cumulative_vaccine, cumulative_death, death, date, province FROM covid")
     myresult = mycursor.fetchall()
     for x in myresult:
-        s = {'active_cases':x[0],'cases':x[1],'total':x[2],'cumulative_cvaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':x[6],'province':x[7]}
+        s = {'active_cases':x[0],'cases':x[1],'cumulative_cases':x[2],'cumulative_vaccine':x[3],'cumulative_deaths':x[4],'deaths':x[5],'date':str(x[6]),'province':x[7]}
         json.append(s)
     mycursor.close()
     mydb.close()
