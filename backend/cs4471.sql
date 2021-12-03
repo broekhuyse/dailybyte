@@ -28,6 +28,13 @@ CREATE TABLE news (
 	description VARCHAR(500) NOT NULL, 
 	country VARCHAR(50) NOT NULL
 );
+CREATE TABLE stock (
+	sid INT AUTO_INCREMENT PRIMARY KEY, 
+	name VARCHAR(30) NOT NULL,
+	symbol VARCHAR(30) NOT NULL UNIQUE, 
+	ask INT,
+	bid INT
+);
 CREATE TABLE covid(
 	cid INT AUTO_INCREMENT PRIMARY KEY,
 	active_case INT,
