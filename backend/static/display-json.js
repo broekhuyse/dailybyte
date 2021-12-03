@@ -79,3 +79,18 @@ var displayNews = function(newsData){
 	}
 	document.getElementById("news").innerHTML = str;
 }
+
+var displayStocks = function(stocksData){
+	document.getElementById("stocks").innerHTML = null;
+	let str = '<h1>Stocks</h1>';
+	
+	for (let i = 0; i < stocksData.length; i++) { 
+		str += '<ul>';
+		str += '<h2>' + stocksData[i]["name"] + '</h2>';
+		for (const key in stocksData[i]) {
+			str += '<li>'+key + ': ' + stocksData[i][key] + '</li>';
+		}
+		str += '</ul>';
+	}
+	document.getElementById("stocks").innerHTML = str;
+}

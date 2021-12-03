@@ -47,6 +47,6 @@ if __name__ == "__main__":
     main()
 
 
-scheduler = BackgroundScheduler()
-job = scheduler.add_job(main,'cron', day_of_week ='mon-sun', hour=8, minute=00)
-scheduler.start()
+# scheduler = BackgroundScheduler()
+# job = scheduler.add_job(main,'cron', day_of_week ='mon-sun', hour=8, minute=00)
+# scheduler.start()

@@ -50,7 +50,7 @@ CREATE TABLE covid(
 INSERT INTO service (service_id) VALUES ("news");
 INSERT INTO service (service_id) VALUES ("covid");
 INSERT INTO service (service_id) VALUES ("weather");
-INSERT INTO service (service_id) VALUES ("stock");
+INSERT INTO service (service_id) VALUES ("stocks");
 
 INSERT IGNORE INTO news (category,title,url,description,country) VALUES ('Entertainment', 'The Young and the Restless Spoilers: Week of December 6 – Sally’s Mission for Adam – Chance’s Traum... - Celebrity Dirty Laundry', 'The Young and the Restless (Y&R) spoilers for the week of December 6-10 tease that Sally Spectra (Courtney Hope) will carry out a mission for Adam Newman (Mark Grossman) while Chance Chancellor (Conner Floyd) deals with his trauma. Jack Abbott (Peter Bergman)…', 'https://www.celebdirtylaundry.com/2021/the-young-and-the-restless-spoilers-week-of-december-6-sallys-mission-for-adam-chances-trauma-jack-phyllis-start-anew/', 'Canada');
 INSERT IGNORE INTO news (category,title,url,description,country) VALUES ('Entertainment', 'Tom Ford Opens Up About Life After Losing Husband Richard Buckley: ‘It’s Been Hard After 35 Years’ - ETCanada.com', 'Life goes on for Tom Ford, but it\'s not easy. In September, the famous fashion designer lost his husband Richard Buckley, who died at 72 after a long illness. In a new interview with WSJ. Magazine, Ford opened up about the loss. [readmore label="READ MORE: " …', 'https://etcanada.com/news/843576/tom-ford-opens-up-about-life-after-losing-husband-richard-buckley-its-been-hard-after-35-years/', 'Canada');
@@ -118,3 +118,5 @@ INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,
 INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,cumulative_death,death,date,province) VALUES (8447, 1196, 449367, 6627017.0, 11581.0, 2.0, '2021-12-01', 'Quebec');
 INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,cumulative_death,death,date,province) VALUES (736, 82, 81074, 836064.0, 926.0, 1.0, '2021-12-01', 'Saskatchewan');
 INSERT IGNORE INTO covid (active_case,cases,cumulative_cases,cumulative_vaccine,cumulative_death,death,date,province) VALUES (58, 5, 1519, 33758.0, 13.0, 0.0, '2021-12-01', 'Yukon');
+
+INSERT INTO stock (name, symbol, ask, bid) VALUES ("Apple" , "APPL", 100, 100);
