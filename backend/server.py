@@ -83,16 +83,21 @@ def login():
 def subscribe():
     user_id = token_to_id(request.json["token"])
     service_id = request.json["service"]
-
-    query = ("INSERT INTO user (user_id, service_id) VALUES (%s, %s)")
+    print(user_id)
+    print(service_id)
+    query = ("INSERT INTO subscription (user_id, service_id) VALUES (%s, %s)")
     value = (user_id, service_id, )
     cursor.execute(query, value)
     database.commit()
     if cursor.rowcount == 1:
         if service_id == "covid":
-            publish_to_subscriber(service_id, user_id, covid.toJson())
+            publish_to_subscriber_with_one_subscription(service_id, user_id, covid.toJson())
         elif service_id == "news":
-            publish_to_subscriber(service_id, user_id, news.toJson())
+            print(news.toJson())
+            publish_to_subscriber_with_one_subscription(service_id, user_id, news.toJson())
+        return ""
+    else:
+        return ""
 
 
 @socketio.on('connect')
@@ -111,6 +116,7 @@ def initial(data):
             "services": services
         }
         emit("services", response, room=request.sid)
+        publish_to_subscriber_with_all_subscription(id)
     
 def get_all_services():
     query = ("SELECT service_id FROM service")
@@ -139,11 +145,20 @@ def publish_to_subscribers(service_id, data):
     user_ids = get_all_subscribers(service_id)
     for i in range(0, len(user_ids)):
         if user_ids[i] in users:
-            emit(service_id, data, room=user_ids[i])
+            print(data)
+            socketio.emit(service_id, data, room=users[user_ids[i]])
 
-def publish_to_subscriber(service_id, user_id, data):
-     if user_ids[i] in users:
-        emit(service_id, data, room=user_ids[i])
+def publish_to_subscriber_with_one_subscription(service_id, user_id, data):
+     if user_id in users:
+        socketio.emit(service_id, data, room=users[user_id])
+
+def publish_to_subscriber_with_all_subscription(user_id):
+    subscriptions = get_all_subscription(user_id)
+    for i in range(0, len(subscriptions)):
+        if subscriptions[i] == "covid":
+                publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, covid.toJson())
+        elif subscriptions[i] == "news":
+            publish_to_subscriber_with_one_subscription(subscriptions[i], user_id, news.toJson())
 
 # authentication middleware:
 def token_to_id(token):

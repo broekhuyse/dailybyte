@@ -1,6 +1,7 @@
 from newsapi import NewsApiClient
 import mysql.connector
-from apscheduler.schedulers.background import BackgroundScheduler
+import os
+# from apscheduler.schedulers.background import BackgroundScheduler
 
 # cursor.execute("DROP TABLE IF EXISTS news")
 # database.commit()
@@ -10,9 +11,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 def toJson():
     json = []
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="",
-        password="",
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
         database="cs4471"
 )
     mycursor = mydb.cursor()
@@ -97,6 +98,6 @@ def main():
     cursor.close()
     database.close()
 
-scheduler = BackgroundScheduler()
-job = scheduler.add_job(main,'cron', day_of_week ='mon-sun', hour=8, minute=00)
-scheduler.start()
+# scheduler = BackgroundScheduler()
+# job = scheduler.add_job(main,'cron', day_of_week ='mon-sun', hour=8, minute=00)
+# scheduler.start()

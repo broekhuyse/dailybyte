@@ -1,7 +1,7 @@
 import requests
 import mysql.connector
 import datetime
-from apscheduler.schedulers.background import BackgroundScheduler
+# from apscheduler.schedulers.background import BackgroundScheduler
 
 def toDatabase(weather_info):
     name = weather_info['name']
