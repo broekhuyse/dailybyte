@@ -17,6 +17,7 @@ def toJson():
         json.append(s)
     mycursor.close()
     mydb.close()
+    return json
 
 def toDatabase(result,cs,db,query):
     for s in result:
