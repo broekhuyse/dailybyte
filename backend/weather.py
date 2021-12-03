@@ -1,8 +1,25 @@
 import requests
 import mysql.connector
 import datetime
+import os
 # from apscheduler.schedulers.background import BackgroundScheduler
-
+def toJson():
+    json = []
+    mydb = mysql.connector.connect(
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
+        database="cs4471"
+)
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM weather")
+    myresult = mycursor.fetchall()
+    for x in myresult:
+        s = {'name':x[0], 'country':x[1], 'desc':x[2], 'temp':x[3], 'temp_min':x[4], 'temp_max':x[5], 'humidity':x[6], 'sunset':x[7], 'sunset_str':x[8]}
+        json.append(s)
+    mycursor.close()
+    mydb.close()
+    return json
 def toDatabase(weather_info):
     name = weather_info['name']
     country = weather_info['sys']['country']
@@ -20,9 +37,9 @@ def main():
     response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=eaa43d94f204987cc6ae167cb7e5c738&units=metric")
     try:
         database = mysql.connector.connect(
-        host="localhost",
-        user="",
-        password="",
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
         database="cs4471")
         cursor = database.cursor()
     except mysql.connector.Error as err:
