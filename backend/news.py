@@ -38,9 +38,9 @@ def main():
     newsapi = NewsApiClient(api_key='6584b8e077ca4cb198ab9d6d38ad12f8')
 
     database = mysql.connector.connect(
-        host="localhost",
-        user="",
-        password="",
+        host=os.environ['DB_HOST'],
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
         database="cs4471"
     )
     cursor = database.cursor()
