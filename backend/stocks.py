@@ -62,7 +62,6 @@ def main():
     stock.append(amazon)
     stock.append(fb)
     stock.append(tsl)
-    for a in stock:
-        toDatabase(a,cursor,database,query)
+    toDatabase(stock,cursor,database,query)
     cursor.close()
     database.close()
